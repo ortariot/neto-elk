@@ -1,17 +1,12 @@
-# сборка для UDP netcat
-# echo '102.98.98.22 connect error 5' | nc -u localhost 5044
 version: "3.9"
 services:
   logstash:
-    image: logstash:8.12.2
+    image: logstash:8.14.3
     environment:
-      # Так как сейчас вы хотите запустить logstash без Elasticsearch, 
-      # необходимо отключить встроенный мониторинг, отправляющий данные в ES
       XPACK_MONITORING_ENABLED: "false"
     ports:
       - "5044:5044/udp"
     volumes:
-      - ./configs/logstash/config.yml:/usr/share/logstash/config/logstash.yml
       - ./configs/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml
       - ./configs/logstash/pipelines:/usr/share/logstash/config/pipelines
 

@@ -15,7 +15,7 @@ def log_generator():
             'msg': random.choice(
                 ('get_data', 'update_data', 'set_data')
                 ),
-            'asctime': datetime.datetime.utcnow().isoformat(
+            'asctime': datetime.datetime.now(datetime.timezone.utc).isoformat(
                 timespec='milliseconds', sep=' '
             )
         }
@@ -23,7 +23,7 @@ def log_generator():
         with open(os.path.join(BASE_DIR, 'log_gen.log'), 'a') as f:
             f.write(json.dumps(log) + '\n')
 
-        time.sleep(5)
+        time.sleep(1)
 
 
 if __name__ == '__main__':

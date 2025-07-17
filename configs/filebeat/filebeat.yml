@@ -2,7 +2,7 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - /var/log/app/log_gen.log
+      - /var/log/app/access.log
 
     fields:
       service: log_gen
